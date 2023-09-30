@@ -1,7 +1,7 @@
 {
-  "name": "phaser3-rollup-typescript",
-  "version": "1.1.0",
-  "description": "Phaser 3 TypeScript Starter",
+  "name": "legends-born",
+  "version": "1.0.0",
+  "description": "A singleplayer web version of the experimental Myths game.",
   "main": "dist/index.js",
   "scripts": {
     "dev": "vite",
@@ -10,21 +10,18 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/geocine/phaser3-rollup-typescript.git"
+    "url": "git+https://github.com/One-Nose/Legends-Born.git"
   },
-  "author": "Aivan Monceller",
+  "author": "One Nose",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/geocine/phaser3-rollup-typescript/issues"
-  },
-  "homepage": "https://github.com/geocine/phaser3-rollup-typescript#readme",
   "devDependencies": {
-    "@types/node": "^17.0.31",
     "@rollup/plugin-alias": "^3.1.9",
-    "@rollup/plugin-commonjs": "^22.0.0",
+    "@rollup/plugin-commonjs": "^22.0.2",
     "@rollup/plugin-replace": "^4.0.0",
-    "phaser": "^3.55.2",
-    "typescript": "^4.6.4",
-    "vite": "^2.9.13"
+    "@types/node": "^17.0.45",
+    "phaser": "^3.60.0",
+    "rollup": "^2.79.1",
+    "typescript": "^4.9.5",
+    "vite": "^2.9.16"
   }
 }

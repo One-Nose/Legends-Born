@@ -1,9 +1,15 @@
-import Phaser from 'phaser';
-import config from './config';
-import GameScene from './scenes/Game';
+import { Game, AUTO, Scale } from 'phaser'
+import GameScene from './scenes/Game'
 
-new Phaser.Game(
-  Object.assign(config, {
-    scene: [GameScene]
-  })
-);
+new Game({
+  type: AUTO,
+  parent: 'game',
+  backgroundColor: '#33A5E7',
+  scale: {
+    width: 800,
+    height: 450,
+    mode: Scale.FIT,
+    autoCenter: Scale.CENTER_BOTH,
+  },
+  scene: [GameScene],
+})
