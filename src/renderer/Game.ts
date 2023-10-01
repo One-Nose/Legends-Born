@@ -1,12 +1,12 @@
 import { Scene } from 'phaser'
-import Client from '../client/Client'
+import Board from './Board'
 
 export default class GameScene extends Scene {
-  client: Client
+  board: Board
 
   constructor() {
     super('GameScene')
-    this.client = new Client(this)
+    this.board = new Board()
   }
 
   preload() {
@@ -19,7 +19,7 @@ export default class GameScene extends Scene {
       -this.renderer.height / 2
     )
 
-    for (const hex of this.client.board) {
+    for (const hex of this.board) {
       this.add.image(hex.x, hex.y, 'hex')
     }
   }
