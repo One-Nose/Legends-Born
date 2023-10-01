@@ -1,26 +1,26 @@
-import { Scene } from 'phaser'
-import Board from './Board'
+import { Hex } from 'honeycomb-grid'
+import Client from '../client/Client'
+import Character from '../global/Character'
+import BasicGame from '../global/Game'
+import GameScene from './GameScene'
 
-export default class GameScene extends Scene {
-  board: Board
+export default class Game extends BasicGame {
+  client: Client
+  scene: GameScene
 
-  constructor() {
-    super('GameScene')
-    this.board = new Board()
+  constructor(scene: GameScene) {
+    super()
+    this.client = new Client()
+    this.scene = scene
+
+    this.scene.createBoard(this.board)
+    this.createCharacters()
   }
 
-  preload() {
-    this.load.image('hex', 'assets/hex.png')
-  }
-
-  create() {
-    this.cameras.main.setScroll(
-      -this.renderer.width / 2,
-      -this.renderer.height / 2
-    )
-
-    for (const hex of this.board) {
-      this.add.image(hex.x, hex.y, 'hex')
-    }
+  async createCharacters(): Promise<void> {
+    const positions = await this.client.getCharacterPositions()
+    for (const position of positions)
+      this.characters.push(new Character(this.board.getHex(position) as Hex))
+    this.scene.createCharacters(this.characters)
   }
 }

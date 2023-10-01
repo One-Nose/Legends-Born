@@ -1,5 +1,5 @@
 import { Game, AUTO, Scale } from 'phaser'
-import GameScene from './renderer/Game'
+import GameScene from './renderer/GameScene'
 
 new Game({
   type: AUTO,
