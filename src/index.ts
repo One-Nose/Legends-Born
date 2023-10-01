@@ -1,10 +1,11 @@
 import { Game, AUTO, Scale } from 'phaser'
-import GameScene from './scenes/Game'
+import GameScene from './renderer/Game'
 
 new Game({
   type: AUTO,
   parent: 'game',
-  backgroundColor: '#33A5E7',
+  backgroundColor: '#69B57F',
+  pixelArt: true,
   scale: {
     width: 800,
     height: 450,

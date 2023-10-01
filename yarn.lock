@@ -258,6 +258,11 @@ has@^1.0.3:
   dependencies:
     function-bind "^1.1.1"
 
+honeycomb-grid@^4.1.4:
+  version "4.1.4"
+  resolved "https://registry.yarnpkg.com/honeycomb-grid/-/honeycomb-grid-4.1.4.tgz#9180fcbf61d19ed0c8794703f407f0790f46b978"
+  integrity sha512-EL7pCJUbJStnhNGJWI4PEJ9W2ZyQ8b+1wijGAyRU0QehrIoSRyqpZWtYllvEiBFx4k2n3xhK2FporZpJzzsMEw==
+
 inflight@^1.0.4:
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/inflight/-/inflight-1.0.6.tgz#49bd6331d7d02d0c09bc910a1075ba8165b56df9"
