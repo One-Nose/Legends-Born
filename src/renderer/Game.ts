@@ -18,9 +18,15 @@ export default class Game extends BasicGame {
   }
 
   async createCharacters(): Promise<void> {
-    const positions = await this.client.getCharacterPositions()
-    for (const position of positions)
-      this.characters.push(new Character(this.board.getHex(position) as Hex))
+    const characters = await this.client.getCharacters()
+    for (const character of characters)
+      this.characters.push(
+        new Character(
+          character.name,
+          character.team,
+          this.board.getHex(character.position) as Hex
+        )
+      )
     this.scene.createCharacters(this.characters)
   }
 }

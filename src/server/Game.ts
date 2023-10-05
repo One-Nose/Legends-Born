@@ -6,8 +6,8 @@ export default class Game extends BasicGame {
   constructor() {
     super()
     this.characters.push(
-      new Character(this.board.getHex([-3, 0]) as Hex),
-      new Character(this.board.getHex([3, 0]) as Hex)
+      new Character('fighter', 'blue', this.board.getHex([-3, 0]) as Hex),
+      new Character('fighter', 'red', this.board.getHex([3, 0]) as Hex)
     )
   }
 }

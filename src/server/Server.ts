@@ -7,10 +7,13 @@ export default class Server {
     this.game = new Game()
   }
 
-  async getCharacterPositions(): Promise<[number, number][]> {
-    return this.game.characters.map((character) => [
-      character.hex.q,
-      character.hex.r,
-    ])
+  async getCharacters(): Promise<
+    { name: string; team: 'red' | 'blue'; position: [number, number] }[]
+  > {
+    return this.game.characters.map((character) => ({
+      name: character.name,
+      team: character.team,
+      position: [character.hex.q, character.hex.r],
+    }))
   }
 }

@@ -10,6 +10,10 @@ export default class GameScene extends Scene {
 
   preload(): void {
     this.load.image('hex', 'assets/hex.png')
+    this.load.spritesheet('fighter', 'assets/pions/fighter.png', {
+      frameWidth: 48,
+      frameHeight: 48,
+    })
   }
 
   create(): void {
@@ -27,6 +31,10 @@ export default class GameScene extends Scene {
 
   createCharacters(characters: Character[]): void {
     for (const character of characters)
-      this.add.image(character.hex.x, character.hex.y, 'character')
+      this.add
+        .sprite(character.hex.x, character.hex.y, character.name)
+        .setOrigin(0.5, 0.6)
+        .setScale(3)
+        .setFlipX(character.team === 'red')
   }
 }
