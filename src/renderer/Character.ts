@@ -15,7 +15,9 @@ export default class Character<T extends Game> extends BasicCharacter<T> {
         if (game.selectedCharacter === null) game.undisplayCharacter()
         else game.selectedCharacter.display()
       })
-      .on('pointerdown', () => this.select())
+
+    if (this.color === 'blue')
+      this.sprite.on('pointerdown', () => this.select())
   }
 
   display(): void {
@@ -24,5 +26,6 @@ export default class Character<T extends Game> extends BasicCharacter<T> {
 
   select(): void {
     this.game.selectedCharacter = this
+    this.game.scene.selectCharacter(this)
   }
 }

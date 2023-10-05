@@ -5,6 +5,7 @@ import Character from './Character'
 
 export default class GameScene extends Scene {
   action!: GameObjects.Image
+  selectImage!: GameObjects.Image
 
   constructor() {
     super('GameScene')
@@ -13,6 +14,7 @@ export default class GameScene extends Scene {
   preload(): void {
     this.load.image('hex', 'assets/hex.png')
     this.load.image('card', 'assets/card.png')
+    this.load.image('select', 'assets/select.png')
 
     for (const color of ['red', 'blue'])
       this.load.spritesheet(
@@ -32,6 +34,8 @@ export default class GameScene extends Scene {
 
   createBoard(board: Board): void {
     for (const hex of board) this.add.image(hex.x, hex.y, 'hex')
+
+    this.selectImage = this.add.image(0, 0, 'select').setVisible(false)
   }
 
   createCharacter(character: Character<Game>): GameObjects.Sprite {
@@ -41,7 +45,7 @@ export default class GameScene extends Scene {
         character.hex.y,
         `${character.name}-${character.color}`
       )
-      .setOrigin(0.5, 0.6)
+      .setOrigin(0.5, 0.62)
       .setScale(3)
       .setFlipX(character.color === 'red')
       .setInteractive(
@@ -52,6 +56,12 @@ export default class GameScene extends Scene {
 
   hideAction(): void {
     this.action.setVisible(false)
+  }
+
+  selectCharacter(character: Character<Game>): void {
+    this.selectImage
+      .setPosition(character.sprite.x, character.sprite.y)
+      .setVisible(true)
   }
 
   showAction(): void {
