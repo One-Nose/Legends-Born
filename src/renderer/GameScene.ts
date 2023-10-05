@@ -35,7 +35,10 @@ export default class GameScene extends Scene {
   createBoard(board: Board): void {
     for (const hex of board) this.add.image(hex.x, hex.y, 'hex')
 
-    this.selectImage = this.add.image(0, 0, 'select').setVisible(false)
+    this.selectImage = this.add
+      .image(0, 0, 'select')
+      .setAlpha(0)
+      .setVisible(false)
   }
 
   createCharacter(character: Character<Game>): GameObjects.Sprite {
@@ -59,9 +62,23 @@ export default class GameScene extends Scene {
   }
 
   selectCharacter(character: Character<Game>): void {
-    this.selectImage
-      .setPosition(character.sprite.x, character.sprite.y)
-      .setVisible(true)
+    this.selectImage.setVisible(true)
+
+    this.tweens.chain({
+      targets: this.selectImage,
+      tweens: [
+        {
+          duration: 70,
+          alpha: 0,
+          onComplete: () =>
+            this.selectImage.setPosition(
+              character.sprite.x,
+              character.sprite.y
+            ),
+        },
+        { duration: 70, alpha: 1 },
+      ],
+    })
   }
 
   showAction(): void {
