@@ -20,11 +20,6 @@ export default class GameScene extends Scene {
   }
 
   create(): void {
-    this.cameras.main.setScroll(
-      -this.renderer.width / 2,
-      -this.renderer.height / 2
-    )
-
     new Game(this)
   }
 

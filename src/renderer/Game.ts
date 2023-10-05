@@ -1,4 +1,4 @@
-import { Hex } from 'honeycomb-grid'
+import { Hex, Orientation, defineHex } from 'honeycomb-grid'
 import Client from '../client/Client'
 import Character from '../global/Character'
 import BasicGame from '../global/Game'
@@ -9,7 +9,14 @@ export default class Game extends BasicGame {
   scene: GameScene
 
   constructor(scene: GameScene) {
-    super()
+    super(
+      defineHex({
+        dimensions: { width: 60, height: 60 },
+        orientation: Orientation.POINTY,
+        origin: { x: -scene.renderer.width / 2, y: -scene.renderer.height / 2 },
+      })
+    )
+
     this.client = new Client()
     this.scene = scene
 

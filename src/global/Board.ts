@@ -1,18 +1,7 @@
-import {
-  Hex as BasicHex,
-  Grid,
-  Orientation,
-  defineHex,
-  spiral,
-} from 'honeycomb-grid'
+import { Hex, Grid, spiral } from 'honeycomb-grid'
 
-const Hex = defineHex({
-  dimensions: { width: 60, height: 60 },
-  orientation: Orientation.POINTY,
-})
-
-export default class Board extends Grid<BasicHex> {
-  constructor() {
-    super(Hex, spiral({ radius: 4 }))
+export default class Board extends Grid<Hex> {
+  constructor(hexType: typeof Hex) {
+    super(hexType, spiral({ radius: 4 }))
   }
 }
