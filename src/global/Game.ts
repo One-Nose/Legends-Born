@@ -4,7 +4,7 @@ import Character from './Character'
 
 export default class Game {
   board: Board
-  characters: Character[]
+  characters: Character<this>[]
 
   constructor(hexType: typeof Hex) {
     this.board = new Board(hexType)

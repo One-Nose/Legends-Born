@@ -1,18 +1,24 @@
 import { Hex } from 'honeycomb-grid'
 import Action from './Action'
 import { BaseCards } from './cards'
+import Game from './Game'
 
-export default class Character {
+export default class Character<T extends Game> {
+  game: T
   hex: Hex
   name: string
   color: 'red' | 'blue'
 
   action: Action
 
-  constructor(name: string, color: 'red' | 'blue', startingHex: Hex) {
-    this.name = name
-    this.color = color
-    this.hex = startingHex
+  constructor(game: T, options: CharacterProperties) {
+    this.game = game
+    this.name = options.name
+    this.color = options.color
+
+    const hex = game.board.getHex(options.position)
+    if (hex === undefined) throw 'Cannot create character in a non-existing hex'
+    this.hex = hex
 
     this.action = BaseCards.Stand
   }

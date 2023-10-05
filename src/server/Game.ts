@@ -11,12 +11,8 @@ export default class Game extends BasicGame {
       { name: 'fighter', color: 'red', position: [3, 0] },
     ]
 
-    for (const character of characters) {
-      const hex = this.board.getHex(character.position)
-      if (hex === undefined)
-        throw 'Trying to create a character on a non-exsisting hex'
-
-      this.characters.push(new Character(character.name, character.color, hex))
-    }
+    this.characters = characters.map(
+      (character) => new Character(this, character)
+    )
   }
 }

@@ -1,12 +1,13 @@
-import { Hex, Orientation, defineHex } from 'honeycomb-grid'
+import { Orientation, defineHex } from 'honeycomb-grid'
 import Client from '../client/Client'
-import Character from '../global/Character'
+import Character from './Character'
 import BasicGame from '../global/Game'
 import GameScene from './GameScene'
 
 export default class Game extends BasicGame {
   client: Client
   scene: GameScene
+  selectedCharacter: Character<this> | null
 
   constructor(scene: GameScene) {
     super(
@@ -19,6 +20,7 @@ export default class Game extends BasicGame {
 
     this.client = new Client()
     this.scene = scene
+    this.selectedCharacter = null
 
     this.scene.createBoard(this.board)
     this.createCharacters()
@@ -27,19 +29,12 @@ export default class Game extends BasicGame {
   async createCharacters(): Promise<void> {
     const characters = await this.client.getCharacters()
 
-    for (const characterProperties of characters) {
-      const hex = this.board.getHex(characterProperties.position)
-      if (hex === undefined)
-        throw 'Trying to create a character on a non-existing hex'
+    this.characters = characters.map(
+      (character) => new Character(this, character)
+    )
+  }
 
-      const character = new Character(
-        characterProperties.name,
-        characterProperties.color,
-        hex
-      )
-
-      this.characters.push(character)
-      this.scene.createCharacter(character)
-    }
+  undisplayCharacter(): void {
+    this.scene.hideAction()
   }
 }

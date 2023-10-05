@@ -1,7 +1,7 @@
 import { GameObjects, Geom, Scene } from 'phaser'
 import Game from './Game'
 import Board from '../global/Board'
-import Character from '../global/Character'
+import Character from './Character'
 
 export default class GameScene extends Scene {
   action!: GameObjects.Image
@@ -34,8 +34,8 @@ export default class GameScene extends Scene {
     for (const hex of board) this.add.image(hex.x, hex.y, 'hex')
   }
 
-  createCharacter(character: Character): void {
-    this.add
+  createCharacter(character: Character<Game>): GameObjects.Sprite {
+    return this.add
       .sprite(
         character.hex.x,
         character.hex.y,
@@ -48,11 +48,13 @@ export default class GameScene extends Scene {
         new Geom.Rectangle(18, 13, 12, 19),
         Geom.Rectangle.Contains
       )
-      .on('pointerover', () => {
-        this.action.setVisible(true)
-      })
-      .on('pointerout', () => {
-        this.action.setVisible(false)
-      })
+  }
+
+  hideAction(): void {
+    this.action.setVisible(false)
+  }
+
+  showAction(): void {
+    this.action.setVisible(true)
   }
 }
