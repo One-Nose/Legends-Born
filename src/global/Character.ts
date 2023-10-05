@@ -17,3 +17,9 @@ export default class Character {
     this.action = BaseCards.Stand
   }
 }
+
+export interface CharacterProperties {
+  name: string
+  color: 'red' | 'blue'
+  position: [number, number]
+}

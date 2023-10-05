@@ -26,14 +26,20 @@ export default class Game extends BasicGame {
 
   async createCharacters(): Promise<void> {
     const characters = await this.client.getCharacters()
-    for (const character of characters)
-      this.characters.push(
-        new Character(
-          character.name,
-          character.color,
-          this.board.getHex(character.position) as Hex
-        )
+
+    for (const characterProperties of characters) {
+      const hex = this.board.getHex(characterProperties.position)
+      if (hex === undefined)
+        throw 'Trying to create a character on a non-existing hex'
+
+      const character = new Character(
+        characterProperties.name,
+        characterProperties.color,
+        hex
       )
-    this.scene.createCharacters(this.characters)
+
+      this.characters.push(character)
+      this.scene.createCharacter(character)
+    }
   }
 }

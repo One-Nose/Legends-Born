@@ -1,3 +1,4 @@
+import { CharacterProperties } from '../global/Character'
 import Game from './Game'
 
 export default class Server {
@@ -7,9 +8,7 @@ export default class Server {
     this.game = new Game()
   }
 
-  async getCharacters(): Promise<
-    { name: string; color: 'red' | 'blue'; position: [number, number] }[]
-  > {
+  async getCharacters(): Promise<CharacterProperties[]> {
     return this.game.characters.map((character) => ({
       name: character.name,
       color: character.color,
