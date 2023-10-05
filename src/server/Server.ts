@@ -8,11 +8,11 @@ export default class Server {
   }
 
   async getCharacters(): Promise<
-    { name: string; team: 'red' | 'blue'; position: [number, number] }[]
+    { name: string; color: 'red' | 'blue'; position: [number, number] }[]
   > {
     return this.game.characters.map((character) => ({
       name: character.name,
-      team: character.team,
+      color: character.color,
       position: [character.hex.q, character.hex.r],
     }))
   }

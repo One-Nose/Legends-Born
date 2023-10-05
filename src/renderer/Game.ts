@@ -23,7 +23,7 @@ export default class Game extends BasicGame {
       this.characters.push(
         new Character(
           character.name,
-          character.team,
+          character.color,
           this.board.getHex(character.position) as Hex
         )
       )

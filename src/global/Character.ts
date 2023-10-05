@@ -3,11 +3,11 @@ import { Hex } from 'honeycomb-grid'
 export default class Character {
   hex: Hex
   name: string
-  team: 'red' | 'blue'
+  color: 'red' | 'blue'
 
-  constructor(name: string, team: 'red' | 'blue', startingHex: Hex) {
+  constructor(name: string, color: 'red' | 'blue', startingHex: Hex) {
     this.name = name
-    this.team = team
+    this.color = color
     this.hex = startingHex
   }
 }
