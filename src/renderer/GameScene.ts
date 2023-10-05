@@ -15,7 +15,7 @@ export default class GameScene extends Scene {
       this.load.spritesheet(
         `fighter-${color}`,
         `assets/${color}/pions/fighter.png`,
-        { frameWidth: 48, frameHeight: 48 }
+        { frameWidth: 48, frameHeight: 48, startFrame: 5 }
       )
   }
 
