@@ -11,8 +11,8 @@ export default class Game extends BasicGame {
       { name: 'fighter', color: 'red', position: [3, 0] },
     ]
 
-    this.characters = characters.map(
-      (character) => new Character(this, character)
+    this.characters.push(
+      ...characters.map((character) => new Character(this, character))
     )
   }
 }

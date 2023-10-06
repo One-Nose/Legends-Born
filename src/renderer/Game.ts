@@ -29,8 +29,8 @@ export default class Game extends BasicGame {
   async createCharacters(): Promise<void> {
     const characters = await this.client.getCharacters()
 
-    this.characters = characters.map(
-      (character) => new Character(this, character)
+    this.characters.push(
+      ...characters.map((character) => new Character(this, character))
     )
   }
 
