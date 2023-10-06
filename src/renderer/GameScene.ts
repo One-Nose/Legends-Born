@@ -2,9 +2,10 @@ import { GameObjects, Geom, Scene } from 'phaser'
 import Game from './Game'
 import Board from '../global/Board'
 import Character from './Character'
+import CardDisplay from './CardDisplay'
 
 export default class GameScene extends Scene {
-  action!: GameObjects.Group
+  action!: CardDisplay
   selectImage!: GameObjects.Image
 
   constructor() {
@@ -28,19 +29,7 @@ export default class GameScene extends Scene {
 
   create(): void {
     new Game(this)
-
-    const card = this.add.image(0, 0, 'card').setOrigin(0, 0)
-
-    this.action = this.add
-      .group([
-        card,
-        this.add
-          .bitmapText(card.width / 2, card.height - 10, 'font', 'ACTION')
-          .setScale(2)
-          .setOrigin(0.5, 1),
-      ])
-      .incXY(30, 30)
-      .setVisible(false)
+    this.action = new CardDisplay(this)
   }
 
   createBoard(board: Board): void {
@@ -68,10 +57,6 @@ export default class GameScene extends Scene {
       )
   }
 
-  hideAction(): void {
-    this.action.setVisible(false)
-  }
-
   selectCharacter(character: Character<Game>): void {
     this.selectImage.setVisible(true)
 
@@ -90,9 +75,5 @@ export default class GameScene extends Scene {
         { duration: 70, alpha: 1 },
       ],
     })
-  }
-
-  showAction(): void {
-    this.action.setVisible(true)
   }
 }

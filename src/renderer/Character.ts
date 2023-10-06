@@ -21,7 +21,7 @@ export default class Character<T extends Game> extends BasicCharacter<T> {
   }
 
   display(): void {
-    this.game.scene.showAction()
+    this.game.scene.action.show(this.action)
   }
 
   select(): void {

@@ -35,6 +35,6 @@ export default class Game extends BasicGame {
   }
 
   undisplayCharacter(): void {
-    this.scene.hideAction()
+    this.scene.action.hide()
   }
 }
