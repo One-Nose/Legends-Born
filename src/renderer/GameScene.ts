@@ -4,7 +4,7 @@ import Board from '../global/Board'
 import Character from './Character'
 
 export default class GameScene extends Scene {
-  action!: GameObjects.Image
+  action!: GameObjects.Group
   selectImage!: GameObjects.Image
 
   constructor() {
@@ -12,6 +12,8 @@ export default class GameScene extends Scene {
   }
 
   preload(): void {
+    this.load.bitmapFont('font', 'assets/font.png', 'assets/font.xml')
+
     this.load.image('hex', 'assets/hex.png')
     this.load.image('card', 'assets/card.png')
     this.load.image('select', 'assets/select.png')
@@ -26,9 +28,18 @@ export default class GameScene extends Scene {
 
   create(): void {
     new Game(this)
+
+    const card = this.add.image(0, 0, 'card').setOrigin(0, 0)
+
     this.action = this.add
-      .image(30, 30, 'card')
-      .setOrigin(0, 0)
+      .group([
+        card,
+        this.add
+          .bitmapText(card.width / 2, card.height - 10, 'font', 'ACTION')
+          .setScale(2)
+          .setOrigin(0.5, 1),
+      ])
+      .incXY(30, 30)
       .setVisible(false)
   }
 
